@@ -6,7 +6,7 @@ sudo pacman-key --init
 sudo pacman-key --populate archlinux
 sudo pacman-key --populate holo
 sudo pacman -Syu
-pacman -S fakeroot dkms
+sudo pacman -S fakeroot dkms
 #get & install latest headers, 'main'-context (next supposedly would read *valve8*-something)
 wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-65-headers-6.5.0.valve7-1-x86_64.pkg.tar.zst
 sudo pacman -U ./linux-neptune-65-headers-6.5.0.valve7-1-x86_64.pkg.tar.zst
@@ -15,9 +15,11 @@ git clone https://aur.archlinux.org/binder_linux-dkms.git
 cd binder_linux-dkms
 makepkg
 sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
+cd ..
 #offer the kernel-module to the sd-waydroid-installer (one has to adapt the script to include 3.7 latest: 65-gbb001cd639ba)
 mv ./binder/6.5.0-valve7-1-neptune-65-g6efe817cc486 ./binder/6.5.0-valve7-1-neptune-65-gbb001cd639ba/
 sudo cp /usr/lib/modules/6.5.0-valve7-1-neptune-65-gbb001cd639ba/updates/dkms/binder_linux.ko.zst ./binder/6.5.0-valve7-1-neptune-65-gbb001cd639ba/
+sudo pacman -R fakeroot dkms binder_linux-dkms linux-neptune-65-headers
 sudo steamos-readonly enable
 
 echo SteamOS Waydroid Installer Script by ryanrudolf
@@ -30,7 +32,7 @@ kernel_version=$(uname -r)
 kernel1=6.1.52-valve9-1-neptune-61
 kernel2=6.1.52-valve14-1-neptune-61
 kernel3=6.1.52-valve16-1-neptune-61
-kernel4=6.5.0-valve5-1-neptune-65-gbb001cd639ba
+kernel4=6.5.0-valve7-1-neptune-65-gbb001cd639ba
 AUR_CASUALSNEK=https://github.com/casualsnek/waydroid_script.git
 AUR_CASUALSNEK2=https://github.com/ryanrudolfoba/waydroid_script.git
 DIR_CASUALSNEK=~/AUR/waydroid/waydroid_script
