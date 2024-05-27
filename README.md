@@ -1,4 +1,4 @@
-# SteamOS Waydroid Installer (SteamOS 3.7 / binder-module-compile)
+# SteamOS Waydroid Installer (supporting SteamOS 3.7 / main-beta-channel / binder-module-compile)
 
 A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck running on SteamOS.
 * The main program that does all the heavy lifting is [Waydroid - a container-based approach to boot a full Android system on a regular GNU/Linux system.](https://github.com/waydroid/waydroid)
