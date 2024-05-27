@@ -16,9 +16,9 @@ cd binder_linux-dkms
 makepkg
 sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
 cd ..
-#offer the kernel-module to the sd-waydroid-installer (one has to adapt the script to include 3.7 latest: 65-gbb001cd639ba)
-mv ./binder/6.5.0-valve7-1-neptune-65-g6efe817cc486 ./binder/6.5.0-valve7-1-neptune-65-gbb001cd639ba/
-sudo cp /usr/lib/modules/6.5.0-valve7-1-neptune-65-gbb001cd639ba/updates/dkms/binder_linux.ko.zst ./binder/6.5.0-valve7-1-neptune-65-gbb001cd639ba/
+#offer the kernel-module to the sd-waydroid-installer (current latest: gbb001cd639ba)
+mv binder/6.5.0-valve5-1-neptune-65-g6efe817cc486 binder/6.5.0-valve7-1-neptune-65-gbb001cd639ba/
+sudo cp /usr/lib/modules/6.5.0-valve7-1-neptune-65-gbb001cd639ba/updates/dkms/binder_linux.ko.zst binder/6.5.0-valve7-1-neptune-65-gbb001cd639ba/
 sudo pacman -R fakeroot dkms binder_linux-dkms linux-neptune-65-headers
 sudo steamos-readonly enable
 
@@ -285,7 +285,7 @@ else
 	echo -e "$current_password\n" | sudo mkdir /var/lib/waydroid &> /dev/null
 	echo -e "$current_password\n" | sudo -S ln -s ~/waydroid/images /var/lib/waydroid/images &> /dev/null
 	echo -e "$current_password\n" | sudo -S ln -s ~/waydroid/cache_http /var/lib/waydroid/cache_http &> /dev/null
-	echo -e "$current_password\n" | sudo -S waydroid init -s GAPPS
+	echo -e "$current_password\n" | sudo -S waydroid init -s VANILLA
 
  	# check if waydroid initialization completed without errors
 	if [ $? -eq 0 ]
