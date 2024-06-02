@@ -203,6 +203,11 @@ echo add > /sys/devices/virtual/input/input*/event*/uevent
 EOF
 echo -e "$current_password\n" | sudo -S chmod +x /usr/bin/waydroid-fix-controllers
 
+# fix for scoped storage permission issue
+waydroid shell sh /system/etc/nodataperm.sh
+EOF
+echo -e "$current_password\n" | sudo -S chmod +x /usr/bin/waydroid-fix-controllers
+
 # custom sudoers file do not ask for sudo for the custom waydroid scripts
 echo -e "$current_password\n" | sudo -S tee /etc/sudoers.d/zzzzzzzz-waydroid > /dev/null <<'EOF'
 deck ALL=(ALL) NOPASSWD: /usr/bin/waydroid-container-stop
