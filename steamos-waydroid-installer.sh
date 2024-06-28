@@ -17,8 +17,9 @@ makepkg
 sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
 cd ..
 #offer the kernel-module to the sd-waydroid-installer (current latest: gbb001cd639ba)
-mkdir binder/6.5.0-valve12-1-neptune-65-g1889664e19fc/
-sudo cp /usr/lib/modules/6.5.0-valve12-1-neptune-65-g1889664e19fc/updates/dkms/binder_linux.ko.zst binder/6.5.0-valve12-1-neptune-65-g1889664e19fc/sudo pacman -R fakeroot dkms binder_linux-dkms linux-neptune-65-headers
+mkdir binder/6.5.0-valve12-1-neptune-65-g1889664e19fc
+sudo cp /usr/lib/modules/6.5.0-valve12-1-neptune-65-g1889664e19fc/updates/dkms/binder_linux.ko.zst binder/6.5.0-valve12-1-neptune-65-g1889664e19fc
+sudo pacman -R fakeroot dkms binder_linux-dkms linux-neptune-65-headers
 sudo steamos-readonly enable
 
 echo SteamOS Waydroid Installer Script by ryanrudolf
