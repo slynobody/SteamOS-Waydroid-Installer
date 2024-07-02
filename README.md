@@ -2,7 +2,17 @@
 # incl. compilation of binder-modules
 # supporting latest SteamOS betas (3.6.x & 3.7 main-channel)
 
-feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
+for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.sh (chmod +x according file after for security reasons)
+
+> git clone https://github.com/slynobody/SteamOS-Waydroid-Installer
+> cd SteamOS-Waydroid-Installer
+> chmod +x steamos-waydroid-installer-3.6 steamos-waydroid-installer.sh
+then
+> ./steamos-waydroid-installer.sh
+or
+> ./steamos-waydroid-installer-3.6
+
+> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
 
 see: https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
 (here: supporting latest <b>SteamOS 3.7 from main-beta-channel</b> / through compiling the binder-module for this kernel)
