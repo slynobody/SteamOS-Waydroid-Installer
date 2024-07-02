@@ -8,10 +8,10 @@ for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.s
 >
 >  chmod +x steamos-waydroid-installer-3.6 steamos-waydroid-installer.sh
 
-then
+then (3.7)
 > ./steamos-waydroid-installer.sh
 
-or
+or (3.6)
 
 > ./steamos-waydroid-installer-3.6
 
