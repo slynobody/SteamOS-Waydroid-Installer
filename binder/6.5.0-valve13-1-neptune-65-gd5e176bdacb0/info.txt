@@ -1,1 +1,1 @@
-binder kernel module for SteamOS 3.7 Beta in Developer / Main Channel - 6.5.0-valve13-1-neptune-65-gd5e176bdacb0
+precompiled binder kernel-module for SteamOS 3.7 Beta in Developer / Main Channel - 6.5.0-valve13-1-neptune-65-gd5e176bdacb0
