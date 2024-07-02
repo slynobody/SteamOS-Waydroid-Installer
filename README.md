@@ -5,17 +5,22 @@
 for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.sh (chmod +x according file after for security reasons)
 
 > git clone https://github.com/slynobody/SteamOS-Waydroid-Installer
+> 
 > cd SteamOS-Waydroid-Installer
-> chmod +x steamos-waydroid-installer-3.6 steamos-waydroid-installer.sh
+>
+>  chmod +x steamos-waydroid-installer-3.6 steamos-waydroid-installer.sh
+
 then
 > ./steamos-waydroid-installer.sh
+
 or
+
 > ./steamos-waydroid-installer-3.6
 
-> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
+-> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
 
-see: https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
-(here: supporting latest <b>SteamOS 3.7 from main-beta-channel</b> / through compiling the binder-module for this kernel)
+script build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
+(letting dkms compile the binder-module for this kernel on your machine / not predelivering pre-fabricated kernel-modules)
 
 A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck running on SteamOS.
 * The main program that does all the heavy lifting is [Waydroid - a container-based approach to boot a full Android system on a regular GNU/Linux system.](https://github.com/waydroid/waydroid)
