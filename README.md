@@ -1,6 +1,6 @@
 # SteamOS Waydroid Installer (incl. compilation of binder-modules, supporting latest SteamOS betas (3.6.x & 3.7 main-channel))
 
-for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.sh (chmod +x according file after for security reasons)
+for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.sh
 
 > git clone https://github.com/slynobody/SteamOS-Waydroid-Installer
 > 
