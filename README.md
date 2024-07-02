@@ -6,14 +6,16 @@ for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.s
 > 
 > cd SteamOS-Waydroid-Installer
 >
->  chmod +x steamos-waydroid-installer-3.6 steamos-waydroid-installer.sh
+>  chmod +x 3_6_kernel_module_build.sh 3_6_kernel_module_build.sh steamos-waydroid-installer.sh
 
-then (3.7)
-> ./steamos-waydroid-installer.sh
+to build kernel-module for latest 3.7-kernel
+> ./3_7_kernel_module_build.sh
 
-or (3.6)
+to build kernel-module for latest 3.7-kernel
+> ./3_6_kernel_module_build.sh
 
-> ./steamos-waydroid-installer-3.6
+to remove current installation (saving your current config & data-files)
+> ./remove.sh
 
 -> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
 
