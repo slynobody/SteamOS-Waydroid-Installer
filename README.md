@@ -1,4 +1,5 @@
-# SteamOS Waydroid Installer (incl. compilation of binder-modules, supporting latest SteamOS betas (3.6.x & 3.7 main-channel))
+# SteamOS Waydroid Installer
+## -> compilation of binder-modules to support latest SteamOS betas (3.6.8+ & 3.7 main-channel))
 
 for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.sh
 
@@ -6,7 +7,7 @@ for 3.6 use steamos-waydroid-installer-3.6, for 3.7 steamos-waydroid-installer.s
 > 
 > cd SteamOS-Waydroid-Installer
 >
->  chmod +x 3_6_kernel_module_build.sh 3_6_kernel_module_build.sh steamos-waydroid-installer.sh
+>  chmod +x 3_6_kernel_module_build.sh 3_6_kernel_module_build.sh steamos-waydroid-installer.sh remove.sh
 
 to build kernel-module for latest 3.7-kernel
 > ./3_7_kernel_module_build.sh
