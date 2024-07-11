@@ -1,23 +1,38 @@
 # SteamOS Waydroid Installer
-## -> compilation of binder-modules to support latest SteamOS betas (3.6.8+ & 3.7 main-channel))
+## -> including compilation of missing kernel-modules supporting latest SteamOS betas (f.e. 3.7 main-channel)
 
 > git clone https://github.com/slynobody/SteamOS-Waydroid-Installer
 > 
 > cd SteamOS-Waydroid-Installer
 >
->  chmod +x 3_6_kernel_module_build.sh 3_6_kernel_module_build.sh steamos-waydroid-installer.sh remove.sh
+>  chmod +x 3_6_kernel_module_build.sh 3_6_kernel_module_build.sh steamos-waydroid-installer.sh remove.sh netrestore.sh
 
-1. to build kernel-module for latest 3.7-kernel
+1. let kernel-module for latest 3.7-kernel build
 > ./3_7_kernel_module_build.sh
 
-2. to build kernel-module for latest 3.6-kernel
+or
+2. let kernel-module for latest 3.6-kernel build
 > ./3_6_kernel_module_build.sh
 
-3. afterwards: install waydroid with steamos 3.5 + 3.6 / 3.7-support
+afterwards:
+3. redo parts of waydroid-install-routine
 > ./steamos-waydroid-installer.sh
 
-errors: remove current installation (saving your current config & data-files) & reinstall again (step 3)
+## FAQ
+# error: i have no net after installation?!?
+> ./netrestore.sh
+
+# how do i remove current waydroid installation (f.e. for complete reinstall) but save current config (step 3)
 > ./remove.sh
+
+# how do i update the steam deck to SteamOS3.7?
+> https://www.youtube.com/watch?v=vly4v6refcY
+
+# Rotation is not supported!
+not supported currently (debian + latest kernel 6.10+ + waydroid-sensors + "waydroid shell wm set-user-rotation lock 0" works in specific cases)
+
+# no resolutions supported above 1280x720 !?
+not supported currently (debian works)
 
 -> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
 
@@ -25,7 +40,7 @@ script build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Install
 (letting dkms compile the binder-module for this kernel on your machine / not predelivering pre-fabricated kernel-modules)
 
 ----
-# waydroid 
+# about: waydroid 
 A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck running on SteamOS: https://github.com/waydroid/waydroid
 
 * The main program that does all the heavy lifting is [Waydroid - a container-based approach to boot a full Android system on a regular GNU/Linux system.](
