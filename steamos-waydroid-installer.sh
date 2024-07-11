@@ -54,7 +54,7 @@ fi
 
 # sanity check - make sure kernel version is supported. exit immediately if not on the supported kernel
 echo Checking if kernel is supported.
-if [ $kernel_version = $kernel1 ] || [ $kernel_version = $kernel2 ] || [ $kernel_version = $kernel3 ] || [ $kernel_version = $kernel4 ] || [ $kernel_version = $kernel5 ]
+if [ $kernel_version = $kernel1 ] || [ $kernel_version = $kernel2 ] || [ $kernel_version = $kernel3 ] || [ $kernel_version = $kernel4 ] || [ $kernel_version = $kernel5 ] || [ $kernel_version = $kernel6 ]
 then
 	echo $kernel_version is supported. Proceed to next step.
 else
