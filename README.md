@@ -18,24 +18,27 @@ afterwards:
 3. redo parts of waydroid-install-routine
 > ./steamos-waydroid-installer.sh
 
-## FAQ
-# error: i have no net after installation?!?
+# FAQ
+## error: i have no net after installation?!?
 > ./netrestore.sh
 
-# how do i remove current waydroid installation (f.e. for complete reinstall) but save current config (step 3)
+## how do i remove current waydroid installation (f.e. for complete reinstall) but save current config (step 3)
 > ./remove.sh
 
-# how do i update the steam deck to SteamOS3.7?
+## how do i update the steam deck to SteamOS 3.7?
 > https://www.youtube.com/watch?v=vly4v6refcY
 
-# Rotation is not supported!
+## Rotation is not supported!
 not supported currently (debian + latest kernel 6.10+ + waydroid-sensors + "waydroid shell wm set-user-rotation lock 0" works in specific cases)
 
-# no resolutions supported above 1280x720 !?
-not supported currently (debian works)
+## There is no appstore?
+This script does not install the google-appstore, download the privacy-friedly 'F-Droid' (https://f-droid.org/F-Droid.apk) and / or 'Aurora Store' (https://auroraoss.com/downloads/AuroraStore/), preferably 'nightly'.
 
--> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automized.
+## This script has to be altered / redone when a new SteamOS 3.7-version ships.
+it will be updated if new kernels arrive. 
+-> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automatized.
 
+# Background
 script build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
 (letting dkms compile the binder-module for this kernel on your machine / not predelivering pre-fabricated kernel-modules)
 
