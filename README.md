@@ -40,7 +40,7 @@ it will be updated if new kernels arrive.
 
 # Background
 script build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
-(letting dkms compile the binder-module for this kernel on your machine / not predelivering pre-fabricated kernel-modules)
+(letting dkms compile the binder-module for this kernel on your machine / not predelivering pre-fabricated kernel-modules out of security-reasons)
 
 ----
 # about: waydroid 
