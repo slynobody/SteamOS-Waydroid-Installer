@@ -5,7 +5,7 @@ sudo steamos-readonly disable
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
 sudo pacman-key --populate holo
-echo "// answer 'no' to this update (latest gamescope seems to have errors)"
+echo "// answer 'no' to updates (latest gamescope seems to have errors)"
 sudo pacman -Syu
 sudo pacman-key --populate holo
 echo "// answer 'yes' to each install"
