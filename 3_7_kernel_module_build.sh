@@ -5,7 +5,10 @@ sudo steamos-readonly disable
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
 sudo pacman-key --populate holo
+echo "// answer 'no' to this update (latest gamescope seems to have errors)"
 sudo pacman -Syu
+sudo pacman-key --populate holo
+echo "// answer 'yes' to each install"
 sudo pacman -S fakeroot dkms
 
 #get & install latest headers, 'main'-context (next supposedly would read *valve8*-something)
