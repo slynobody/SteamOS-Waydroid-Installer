@@ -13,7 +13,7 @@ kernel1=6.1.52-valve9-1-neptune-61
 kernel2=6.1.52-valve14-1-neptune-61
 kernel3=6.1.52-valve16-1-neptune-61
 kernel4=6.5.0-valve5-1-neptune-65-g6efe817cc486
-kernel5=6.5.0-valve12-1-neptune-65-g1889664e19fc
+kernel5=6.5.0-valve15-1-neptune-65-g7de78a02ab71
 kernel6=6.5.0-valve13-1-neptune-65-gd5e176bdacb0
 AUR_CASUALSNEK=https://github.com/casualsnek/waydroid_script.git
 AUR_CASUALSNEK2=https://github.com/ryanrudolfoba/waydroid_script.git
@@ -276,7 +276,7 @@ else
 	echo -e "$current_password\n" | sudo mkdir /var/lib/waydroid &> /dev/null
 	echo -e "$current_password\n" | sudo -S ln -s ~/waydroid/images /var/lib/waydroid/images &> /dev/null
 	echo -e "$current_password\n" | sudo -S ln -s ~/waydroid/cache_http /var/lib/waydroid/cache_http &> /dev/null
-	echo -e "$current_password\n" | sudo -S waydroid init -s GAPPS
+	echo -e "$current_password\n" | sudo -S waydroid init -s VANILLA
 
  	# check if waydroid initialization completed without errors
 	if [ $? -eq 0 ]
