@@ -19,9 +19,6 @@ afterwards:
 > ./steamos-waydroid-installer.sh
 
 # FAQ
-## error: i have no net after installation?!?
-> ./netrestore.sh
-
 ## how do i remove current waydroid installation (f.e. for complete reinstall) but save current config (step 3)
 > ./remove.sh
 
@@ -29,7 +26,7 @@ afterwards:
 > https://www.youtube.com/watch?v=vly4v6refcY
 
 ## Rotation is not supported!
-not supported currently (debian + latest kernel 6.10+ + waydroid-sensors + "waydroid shell wm set-user-rotation lock 0" works in specific cases)
+there is an experimental feature (https://youtube.com/watch?v=OxApPDhZn9I), but it does not do the rotation automatically (yet).
 
 ## There is no appstore?
 This script does not install the google-appstore, download the privacy-friedly 'F-Droid' (https://f-droid.org/F-Droid.apk) and / or 'Aurora Store' (https://auroraoss.com/downloads/AuroraStore/), preferably 'nightly'.
@@ -37,6 +34,9 @@ This script does not install the google-appstore, download the privacy-friedly '
 ## This script has to be altered / redone when a new SteamOS 3.7-version ships.
 it will be updated if new kernels arrive. 
 -> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automatized.
+
+## error: no net after installation?!?
+> ./netrestore.sh
 
 # Background
 script build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
