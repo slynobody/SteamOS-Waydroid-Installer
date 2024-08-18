@@ -324,7 +324,7 @@ else
 	echo -e "$current_password\n" | sudo mkdir /var/lib/waydroid &> /dev/null
 	echo -e "$current_password\n" | sudo -S ln -s ~/waydroid/images /var/lib/waydroid/images &> /dev/null
 	echo -e "$current_password\n" | sudo -S ln -s ~/waydroid/cache_http /var/lib/waydroid/cache_http &> /dev/null
-	echo -e "$current_password\n" | sudo -S waydroid init -s GAPPS
+	echo -e "$current_password\n" | sudo -S waydroid init -s VANILLA
 
  	# check if waydroid initialization completed without errors
 	if [ $? -eq 0 ]
