@@ -20,7 +20,7 @@ makepkg
 yes '' | sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
 
 cd ..
-mkdir binder/6.8.0--valve2-1-neptune-68
+mkdir binder/6.8.0-valve2-1-neptune-68
 #offer the kernel-module to the sd-waydroid-installer (one has to adapt the script to include 3.7 latest: 65-gd5e176bdacb0)
 sudo cp /usr/lib/modules/6.8.0-valve2-1-neptune-68-ga022b3966af7/updates/dkms/binder_linux.ko.zst binder/6.8.0-valve2-1-neptune-68
 
