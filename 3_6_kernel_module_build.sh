@@ -9,7 +9,6 @@ sudo pacman -Syu
 sudo pacman -S fakeroot dkms
 #get & install latest headers, 'main'-context (next supposedly would read *valve20-2*-something)
 wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-3.6/os/x86_64/linux-neptune-65-headers-6.5.0.valve20-1-x86_64.pkg.tar.zst
-#wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-65-headers-6.5.0.valve19-1-x86_64.pkg.tar.zst
 sudo pacman -U ./linux-neptune-65-headers-6.5.0.valve20-1-x86_64.pkg.tar.zst
 
 #get & install latest binder-dkms (which builds the missing kernel-module)
