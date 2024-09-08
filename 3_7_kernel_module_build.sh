@@ -5,19 +5,21 @@ sudo steamos-readonly disable
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
 sudo pacman-key --populate holo
-yes '' | sudo pacman -Syu
-yes '' | sudo pacman-key --populate holo
-yes '' | sudo pacman -S fakeroot dkms
+echo ">>>> dont update! ('n') <<<<"
+sudo pacman -Syu
+sudo pacman-key --populate holo
+echo "<<<< 'y' >>>>"
+udo pacman -S fakeroot dkms
 
 #get & install latest headers, 'main'-context (next supposedly would read *valve8*-something)
 wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-68-headers-6.8.0.valve2-1-x86_64.pkg.tar.zst
-yes '' | sudo pacman -U ./linux-neptune-68-headers-6.8.0.valve2-1-x86_64.pkg.tar.zst
+sudo pacman -U ./linux-neptune-68-headers-6.8.0.valve2-1-x86_64.pkg.tar.zst
 
 #get & install latest binder-dkms (which builds the missing kernel-module)
 git clone https://aur.archlinux.org/binder_linux-dkms.git
 cd binder_linux-dkms
 makepkg
-yes '' | sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
+sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
 
 cd ..
 mkdir binder/6.8.0-valve2-1-neptune-68
