@@ -5,7 +5,7 @@
 > 
 > cd SteamOS-Waydroid-Installer
 >
->  chmod +x 3_6_kernel_module_build.sh 3_7_kernel_module_build.sh steamos-waydroid-installer.sh remove.sh netrestore.sh
+>  chmod +x *.sh
 
 1. let kernel-module for latest 3.7-kernel build
 > ./3_7_kernel_module_build.sh
