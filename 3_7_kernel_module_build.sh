@@ -13,7 +13,7 @@ sudo pacman-key --populate holo
 echo "<<<<<<<<<<<<<"
 echo "<<<< 'y' >>>>"
 echo "<<<<<<<<<<<<<"
-udo pacman -S fakeroot dkms
+sudo pacman -S fakeroot dkms
 
 #get & install latest headers, 'main'-context (next supposedly would read *valve8*-something)
 wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-68-headers-6.8.0.valve2-1-x86_64.pkg.tar.zst
