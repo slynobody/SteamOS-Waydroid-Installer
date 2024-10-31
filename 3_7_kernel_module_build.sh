@@ -25,7 +25,7 @@ sudo pacman -U ./binder_linux-dkms-6.8-1-x86_64.pkg.tar.zst
 cd ..
 mkdir binder/6.8.12-valve3-1-neptune-68
 #offer the kernel-module to the sd-waydroid-installer (one has always to adapt the script to include 3.7 latest)
-sudo cp /usr/lib/modules/6.8.12-valve3-1-neptune-68-gb9bc2d44bd5b/updates/dkms/binder_linux.ko.zst binder/6.8.12-valve3-1-neptune-68
+sudo cp /usr/lib/modules/6.8.12-valve3-1-neptune-68-gb9bc2d44db5b/updates/dkms/binder_linux.ko.zst binder/6.8.12-valve3-1-neptune-68
 
 #remove now unnec packages (nec for future reinstalls!)
 sudo  pacman -R fakeroot dkms binder_linux-dkms linux-neptune-68-headers
