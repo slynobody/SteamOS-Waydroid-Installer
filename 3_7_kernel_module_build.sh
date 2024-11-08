@@ -15,7 +15,7 @@ echo "<<<<<<<<<<<<<"
 sudo pacman -S fakeroot dkms
 
 #get & install latest headers, 'main'-context (next supposedly would read *valve8*-something)
-wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-68-headers-6.8.12.valve3-1-x86_64.pkg.tar.zst
+sudo wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-68-headers-6.8.12.valve3-1-x86_64.pkg.tar.zst
 sudo pacman -U ./linux-neptune-68-headers-6.8.12.valve3-1-x86_64.pkg.tar.zst
 
 #get & install latest binder-dkms (which builds the missing kernel-module)
