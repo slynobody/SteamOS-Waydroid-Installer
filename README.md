@@ -26,7 +26,8 @@ afterwards:
 there is an experimental feature (https://youtube.com/watch?v=OxApPDhZn9I), but it does not do the rotation automatically (yet).
 
 ## What appstore should i use?
-Take into consideration the privacy-friedly 'F-Droid' (https://f-droid.org/F-Droid.apk) and / or 'Aurora Store' (https://auroraoss.com/downloads/AuroraStore/), preferably 'nightly'.
+privacy-friedly <a href="https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk">'Aurora Store'</a> (and/or 'F-Droid' (https://f-droid.org/F-Droid.apk))
+> waydroid app install com.aurora.store_47.apk
 
 ## This script has to be altered / redone when a new SteamOS 3.7-version ships.
 it will be updated if new kernels arrive. 
