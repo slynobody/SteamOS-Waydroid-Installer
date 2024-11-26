@@ -1,22 +1,33 @@
-# SteamOS Waydroid Installer
-## -> compile missing kernel-modules supporting latest SteamOS betas (f.e. 3.7 main-channel)
+# Android on SteamOS 3.7 ('waydroid')
+## -> updated, latest components, adapted to latest OS-changes (python 3.12., availability of packages, plasma 6.22)
 
+> sudo steamos-readonly disable
+> 
+> sudo pacman-key --init
+> 
+> sudo pacman-key --populate archlinux
+> 
+> sudo pacman-key --populate holo
+> 
+> sudo pacman -S git
+> 
 > git clone https://github.com/slynobody/SteamOS-Waydroid-Installer
 > 
 > cd SteamOS-Waydroid-Installer
 >
->  chmod +x *.sh
+> chmod +x *.sh
 
-1. let kernel-module for latest 3.7-kernel build
+1. Install Basics (alway answer 'yes', installs binder kernel-module, latest lxc + dnsmasq)
 > ./3_7_kernel_module_build.sh
 
-or
-2. let kernel-module for latest 3.6-kernel build
-> ./3_6_kernel_module_build.sh
-
-afterwards:
-3. redo parts of waydroid-install-routine
+2. install latest base (use privacy-friendly 'Vanilla' / NoGApps)
 > ./steamos-waydroid-installer.sh
+
+3. Use privacy-friendly appstore
+> wget https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk
+> waydroid app install ./com.aurora.store_47.apk
+
+enjoy.
 
 # FAQ
 ## how do i update the steam deck to SteamOS 3.7?
@@ -27,17 +38,15 @@ there is an experimental feature (https://youtube.com/watch?v=OxApPDhZn9I), but 
 
 ## What appstore should i use?
 privacy-friedly <a href="https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk">'Aurora Store'</a> (and/or 'F-Droid' (https://f-droid.org/F-Droid.apk))
-> waydroid app install com.aurora.store_47.apk
 
 ## This script has to be altered / redone when a new SteamOS 3.7-version ships.
 it will be updated if new kernels arrive. 
--> feel free to offer ideas how the process of getting newest kernel-versions and according header-files can be automatized.
 
 ## error: no net after installation?!?
 > ./netrestore.sh
 
 # Background
-script build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
+scripts build on top of https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
 (letting dkms compile the binder-module for this kernel on your machine / not predelivering pre-fabricated kernel-modules out of security-reasons)
 
 ----
