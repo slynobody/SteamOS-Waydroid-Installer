@@ -30,5 +30,5 @@ mkdir binder/6.8.12-valve7-1-neptune-68
 sudo cp /usr/lib/modules/6.8.12-valve7-1-neptune-68-g8c3c3d4f5307/updates/dkms/binder_linux.ko.zst binder/6.8.12-valve7-1-neptune-68
 
 #remove now unnec packages (nec for future reinstalls!)
-sudo  pacman -R fakeroot dkms binder_linux-dkms linux-neptune-68-headers
+sudo  pacman -R fakeroot dkms binder_linux-dkms linux-neptune-68-headers dnsmasq lxc
 sudo steamos-readonly enable
