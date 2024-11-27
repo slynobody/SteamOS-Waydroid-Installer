@@ -12,7 +12,7 @@ sudo pacman-key --populate holo
 echo "<<<<<<<<<<<<<"
 echo "<<<< 'y' >>>>"
 echo "<<<<<<<<<<<<<"
-sudo pacman -S fakeroot dkms dnsmasq lxc
+sudo pacman -S fakeroot dkms dnsmasq lxc debugedit
 
 #get & install latest headers, 'main'-context (next supposedly would read *valve8*-something)
 sudo wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-68-headers-6.8.12.valve7-1-x86_64.pkg.tar.zst
@@ -32,3 +32,5 @@ sudo cp /usr/lib/modules/6.8.12-valve7-1-neptune-68-g8c3c3d4f5307/updates/dkms/b
 #remove now unnec packages (nec for future reinstalls!)
 sudo  pacman -R fakeroot dkms binder_linux-dkms linux-neptune-68-headers
 sudo steamos-readonly enable
+
+./steamos-waydroid-installer.sh
