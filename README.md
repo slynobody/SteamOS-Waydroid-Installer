@@ -17,13 +17,10 @@
 >
 > chmod +x *.sh
 
-1. Install Basics (alway answer 'yes', installs binder kernel-module, latest lxc + dnsmasq)
+1. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script)
 > ./3_7_kernel_module_build.sh
 
-2. install latest base (use privacy-friendly 'Vanilla' / NoGApps)
-> ./steamos-waydroid-installer.sh
-
-3. Use privacy-friendly appstore
+2. Use privacy-friendly appstore to install your apps (also consider installing fstore)
 > wget https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk
 > waydroid app install ./com.aurora.store_47.apk
 
