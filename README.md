@@ -17,7 +17,7 @@
 >
 > chmod +x *.sh
 
-1. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script)
+1. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script with new 3.7-precompiled packages needed)
 > ./3_7_kernel_module_build.sh
 
 2. Use privacy-friendly appstore to install your apps (also consider installing fstore)
