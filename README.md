@@ -27,8 +27,12 @@
 enjoy.
 
 # FAQ
-## how do i update the steam deck to SteamOS 3.7?
-> https://www.youtube.com/watch?v=vly4v6refcY
+## how do i get SteamOS 3.7?
+> Enter 'developer mode' (https://tuxexplorer.com/how-to-enable-developer-mode-on-steam-deck)
+> 
+> in developer-tab left enable 'extended update-channels'
+> 
+> in system-tab enable OS-Update-Channel 'Main'
 
 ## Rotation is not supported!
 there is an experimental feature (https://youtube.com/watch?v=OxApPDhZn9I), but it does not do the rotation automatically (yet).
