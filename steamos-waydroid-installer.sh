@@ -2,7 +2,7 @@
 
 clear
 
-echo SteamOS Waydroid Installer Script by ryanrudolf -- adapted to SteamOS 3.7 (python 3.12; plasma 6.2)
+echo "SteamOS Waydroid Installer Script by ryanrudolf // adapted to SteamOS 3.7 (python 3.12; plasma 6.2)"
 sleep 2
 
 # define variables here
@@ -472,6 +472,7 @@ EOF
 	echo steamos-nested-desktop shortcut has been added to Game Mode.
 	
 	# all done lets re-enable the readonly
+        sudo cp ./waydroid-net.sh /usr/lib/waydroid/data/scripts/
 	echo -e "$current_password\n" | sudo -S steamos-readonly enable
 	echo Waydroid has been successfully installed!
 fi
