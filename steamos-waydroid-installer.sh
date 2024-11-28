@@ -472,7 +472,7 @@ EOF
 	echo steamos-nested-desktop shortcut has been added to Game Mode.
 	
 	# all done lets re-enable the readonly
-        sudo cp ./waydroid-net.sh /usr/lib/waydroid/data/scripts/
+	# sudo cp ./waydroid-net.sh /usr/lib/waydroid/data/scripts/
 	echo -e "$current_password\n" | sudo -S steamos-readonly enable
 	echo Waydroid has been successfully installed!
 fi
