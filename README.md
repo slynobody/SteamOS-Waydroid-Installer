@@ -63,17 +63,4 @@ A collection of tools that is packaged into an easy to use script that is stream
 1. Do this at your own risk!
 2. This is for educational and research purposes only!
 
-# Mini-guides for Steam Deck Android Waydroid
-This mini guides are tailor-fitted for the Steam Deck that uses the script provided in this repo. \
-[How to Sideload APKs](https://youtu.be/LglEbSdRc0M) \
-[How to Upgrade the Android Image](https://youtu.be/lfwoZZxXh7I) \
-[How to Configure Fake Wi-Fi](https://youtu.be/LtMGmSSB52g) \
-[How to Configure Fake Touchscreen / Configure Mouse Clicks as Touchscreen Input](https://youtu.be/Xt2ceq8ZUJ8) \
-[How to Launch APKs Directly in Game Mode](https://youtu.be/pkRtPHfa_EM?si=broimKF1menbRxGg) \
-[Configure for 1080p When in Docked Mode](https://youtu.be/D9ODCpjDK30) \
-[Configure sdcard as Main Storage for Waydroid](https://youtu.be/Q4QzzjkfZeI) \
-[Activate and Configure Mantis Gamepad Pro](https://youtu.be/icVOh7IIfE0) \
-[How to Configure Roblox](https://youtu.be/-czisFuKoTM?si=8EPXyzasi3no70Tl) \
-[How to Access the OBB Folder / How to Root](https://youtu.be/RurH-XTTSDQ)
-
 <a href="https://artsandculture.google.com/experiment/viola-the-bird/nAEJVwNkp-FnrQ?cp=e30."><img src="https://images.pling.com/img/00/00/78/78/79/2160403/proxy-image1.jpeg"/></a>
