@@ -1,6 +1,7 @@
 # Android on SteamOS 3.7 ('waydroid')
-## -> updated, latest components, adapted to latest OS-changes (python 3.12., availability of packages, plasma 6.22)
+## -> compatible latest Steam-OS-changes (python 3.12., reduced packages, plasma 6.22)
 
+1. copy/paste > konsole
 > sudo steamos-readonly disable
 > 
 > sudo pacman-key --init
@@ -17,10 +18,10 @@
 >
 > chmod +x *.sh
 
-1. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script with new 3.7-precompiled packages needed)
+2. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script with new 3.7-precompiled packages needed)
 > ./3_7_kernel_module_build.sh
 
-2. Use privacy-friendly appstore to install your apps (also consider installing fstore)
+3. Use privacy-friendly appstore to install your apps (also consider installing fstore)
 > wget https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk
 > waydroid app install ./com.aurora.store_47.apk
 
