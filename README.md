@@ -1,5 +1,5 @@
 # Android on SteamOS 3.7 ('waydroid')
-## -> compatible with latest Steam-OS-3.7-changes (python 3.12., reduced packages, plasma 6.22)
+## Steam-OS-3.7-compatible (python 3.12., reduced preinstalled packages, plasma 6.22)
 
 1. copy/paste > konsole
 > sudo steamos-readonly disable
