@@ -1,5 +1,5 @@
 # Android on SteamOS 3.7 ('waydroid')
-## Steam-OS-3.7-compatible (python 3.12., reduced preinstalled packages, plasma 6.22)
+## waydroid, SteamOS-3.7-compatible
 
 1. copy/paste > konsole
 > sudo steamos-readonly disable
@@ -18,7 +18,7 @@
 >
 > chmod +x *.sh
 
-2. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script with new 3.7-precompiled packages needed)
+2. Install Basics (alway answer 'yes', use privacy-friendly 'Vanilla' / NoGApps, installs binder kernel-module, latest lxc + dnsmasq as well as going back to the main script with new, extra precompiled packages needed under 3.7+)
 > ./3_7_kernel_module_build.sh
 
 3. Use privacy-friendly appstore to install your apps (also consider installing fstore)
