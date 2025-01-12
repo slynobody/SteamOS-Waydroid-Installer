@@ -180,14 +180,17 @@ else
 fi
 
 # ok lets install waydroid and cage
+# dnsmasq + lxc seem not to be included from self-compiled sources now
 #echo -e "$current_password\n" | sudo -S pacman -S dnsmasq lxc wlroots
+
+#install packages exclusively compiled for 3.7+
 echo -e "$current_password\n" | sudo -S pacman -U waydroid/waydroid-1.4.3-1-any.pkg.tar.zst waydroid/libgbinder-1.1.40-2-x86_64.pkg.tar.zst \
 waydroid/python-gbinder-1.1.2-2-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.79-2-x86_64.pkg.tar.zst cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
-# dnsmasq + lxc seem to not to be included from self-compiled sources now
 
-#old: echo -e "$current_password\n" | sudo -S pacman -U cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst waydroid/dnsmasq-2.89-1-x86_64.pkg.tar.zst \
-	waydroid/lxc-1\:5.0.3-1-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.74-1-x86_64.pkg.tar.zst waydroid/libgbinder-1.1.35-1-x86_64.pkg.tar.zst \
-	waydroid/python-gbinder-1.1.2-1-x86_64.pkg.tar.zst waydroid/waydroid-1.4.3-1-any.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
+#old
+#echo -e "$current_password\n" | sudo -S pacman -U cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst waydroid/dnsmasq-2.89-1-x86_64.pkg.tar.zst \
+#	waydroid/lxc-1\:5.0.3-1-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.74-1-x86_64.pkg.tar.zst waydroid/libgbinder-1.1.35-1-x86_64.pkg.tar.zst \
+#	waydroid/python-gbinder-1.1.2-1-x86_64.pkg.tar.zst waydroid/waydroid-1.4.3-1-any.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
 
 if [ $? -eq 0 ]
 then
