@@ -20,12 +20,15 @@
 
 2. Install Basics & compile yourself (binder kernel-module, latest lxc + dnsmasq from aur, going back to main script)
 > ./3_7_kernel_module_build.sh
+
 or.
-2. Install through script (precompiled packages for latest 3.7+)
+
+2. Install through script (precompiled packages for latest 3.7+, thanks to https://github.com/parkerlreed))
 > ./steamos-waydroid-installer.sh
 
 3. Use privacy-friendly appstore to install your apps (also consider installing fstore)
 > wget https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk
+>
 > waydroid app install ./com.aurora.store_47.apk
 
 enjoy.
