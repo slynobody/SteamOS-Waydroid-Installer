@@ -15,14 +15,17 @@ stable_kernel2=6.5.0-valve22-1-neptune-65
 beta_kernel1=6.5.0-valve23-1-neptune-65
 main_kernel1=6.8.12-valve11-1-neptune-68
 ANDROID11_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android11TV/lineage-18.1-20241220-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
-ANDROID11_TV_IMG_MD5=4b0236af2d83164135d86872e27ce6af
+ANDROID11_TV_IMG_HASH=680971aaeb9edc64d9d79de628bff0300c91e86134f8daea1bbc636a2476e2a7
 ANDROID13_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13TV/lineage-20-20250117-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
-ANDROID13_TV_IMG_MD5=bf98616ddaba97ecd91d4dd82b1e748a
+ANDROID13_TV_IMG_HASH=2ac5d660c3e32b8298f5c12c93b1821bc7ccefbd7cfbf5fee862e169aa744f4c
+ANDROID13_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13/lineage-20-20250121-UNOFFICIAL-10MinuteSteamDeckGamer-Waydroid.zip
+ANDROID13_IMG_HASH=833be8279a605285cc2b9c85425511a100320102c7ff8897f254fcfdf3929bb1
 AUR_CASUALSNEK=https://github.com/casualsnek/waydroid_script.git
 AUR_CASUALSNEK2=https://github.com/ryanrudolfoba/waydroid_script.git
 DIR_CASUALSNEK=~/AUR/waydroid/waydroid_script
 FREE_HOME=$(df /home --output=avail | tail -n1)
 FREE_VAR=$(df /var --output=avail | tail -n1)
+LUGIN_LOADER=/home/deck/homebrew/services/PluginLoader
 
 # define functions here
 cleanup_exit () {
@@ -150,6 +153,24 @@ else
 	echo Sudo password is blank! Setup a sudo password first and then re-run script!
 	passwd
 	exit
+fi
+
+# sanity check - is Decky Loader installed?
+if [ -f $PLUGIN_LOADER ]
+then
+	echo Decky Loader detected! This may cause issues with the SteamOS Waydroid installer script!
+	echo Temporary disabling the Decky Loader plugin loader service.
+	echo -e "$current_password\n" | sudo -S systemctl stop plugin_loader.service
+	
+	if [ $? -eq 0 ]
+	then
+		echo Decky Loader Plugin Loader service successfully disabled.
+		echo Once the script has finished installing Waydroid, reboot the Steam Deck to re-activate the Decky Loader Plugin Loader service.
+	else
+		echo Error ecountered when stopping the Decky Loader Plugin Loader service.
+		echo Exiting immediately.
+		exit
+	fi
 fi
 
 # sanity checks are all good. lets go!
@@ -314,15 +335,16 @@ else
 	echo -e "$current_password\n" | sudo -S cp extras/nodataperm.sh /var/lib/waydroid/overlay/system/etc
 
 
-	Choice=$(zenity --width 800 --height 280 --list --radiolist --multiple \
+	Choice=$(zenity --width 1040 --height 300 --list --radiolist --multiple \
 		--title "SteamOS Waydroid Installer  - https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer"\
 		--column "Select One" \
 		--column "Option" \
 		--column="Description - Read this carefully!"\
-		TRUE GAPPS "Download regular Android image with Google Play Store."\
-		FALSE NO_GAPPS "Download regular Android image without Google Play Store."\
-		FALSE TV11 "Download custom Android 11 TV image - thanks SupeChicken666 for the build instructions!" \
- 		FALSE TV13 "Download custom Android 13 TV image - thanks SupeChicken666 for the build instructions!" \
+		TRUE A11_GAPPS "Download Android 11 image with Google Play Store."\
+		FALSE A11_NO_GAPPS "Download Android 11 image without Google Play Store."\
+		FALSE A13_NO_GAPPS "Download Android 13 image without Google Play Store."\
+		FALSE TV11_NO_GAPPS "Download Android 11 TV image without Google Play Store - thanks SupeChicken666 for the build instructions!" \
+		FALSE TV13_NO_GAPPS "Download Android 13 TV image without Google Play Store - thanks SupeChicken666 for the build instructions!" \
 		FALSE EXIT "***** Exit this script *****")
 
 		if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
@@ -330,63 +352,88 @@ else
 			echo User pressed CANCEL / EXIT. Goodbye!
 			cleanup_exit
 
-		elif [ "$Choice" == "GAPPS" ]
+		elif [ "$Choice" == "A11_GAPPS" ]
 		then
 			echo Initializing Waydroid
 			echo -e "$current_password\n" | sudo -S waydroid init -s GAPPS
-   			check_waydroid_init
-   			
-			echo Install libndk, widevine and fingerprint spoof 
+			check_waydroid_init
+
+			echo Install libndk, widevine and fingerprint spoof
 			install_android_extras
 
-		elif [ "$Choice" == "NO_GAPPS" ]
+		elif [ "$Choice" == "A11_NO_GAPPS" ]
 		then
 			echo Initializing Waydroid
 			echo -e "$current_password\n" | sudo -S waydroid init
-   			check_waydroid_init
-			
-			echo Install libndk, widevine and fingerprint spoof 
-   			install_android_extras
+			check_waydroid_init
 
-		elif [ "$Choice" == "TV11" ]
+			echo Install libndk, widevine and fingerprint spoof
+			install_android_extras
+
+		elif [ "$Choice" == "TV11_NO_GAPPS" ]
 		then
 			echo Downloading Android 11 TV image
 			echo -e "$current_password\n" | sudo -S curl -o ~/waydroid/custom/android11tv.zip $ANDROID11_TV_IMG -L
-			hash=$(md5sum "/home/deck/waydroid/custom/android11tv.zip" | awk '{print $1}')
-			# Verify the MD5 hash
-			if [[ "$hash" != "$ANDROID11_TV_IMG_MD5" ]]; then
-				echo MD5 hash mismatch for Android 11 TV image, indicating a corrupted download. This might be due to a network error, you can try again.
+			hash=$(sha256sum "/home/deck/waydroid/custom/android11tv.zip" | awk '{print $1}')
+			# Verify the hash
+			if [[ "$hash" != "$ANDROID11_TV_IMG_HASH" ]]; then
+				echo sha256 hash mismatch for Android 11 TV image, indicating a corrupted download. This might be due to a network error, you can try again.
 				cleanup_exit
 			fi
 
 			echo Extracting Archive
 			echo -e "$current_password\n" | sudo -S unzip -o ~/waydroid/custom/android11tv -d ~/waydroid/custom
 			echo -e "$current_password\n" | sudo -S rm ~/waydroid/custom/android11tv.zip
-	   		echo Applying fix for Leanback Keyboard
+
+			echo Applying fix for Leanback Keyboard
 			echo -e "$current_password\n" | sudo -S cp extras/ATV-Generic.kl /var/lib/waydroid/overlay/system/usr/keylayout/Generic.kl
+
 			echo Initializing Waydroid
  			echo -e "$current_password\n" | sudo -S waydroid init
 			check_waydroid_init
-		
-		elif [ "$Choice" == "TV13" ]
+
+		elif [ "$Choice" == "TV13_NO_GAPPS" ]
 		then
 			echo Downloading Android 13 TV image
-			echo -e "$current_password\n" | sudo -S curl -o ~/waydroid/custom/android13tv.zip $ANDROID13_TV_IMG -L			hash=$(md5sum "/home/deck/waydroid/custom/android13tv.zip" | awk '{print $1}')
-			# Verify the MD5 hash
-			if [[ "$hash" != "$ANDROID13_TV_IMG_MD5" ]]; then
-				echo MD5 hash mismatch for Android 13 TV image, indicating a corrupted download. This might be due to a network error, you can try again.
+			echo -e "$current_password\n" | sudo -S curl -o ~/waydroid/custom/android13tv.zip $ANDROID13_TV_IMG -L
+			hash=$(sha256sum "/home/deck/waydroid/custom/android13tv.zip" | awk '{print $1}')
+			# Verify the hash
+			if [[ "$hash" != "$ANDROID13_TV_IMG_HASH" ]]; then
+				echo sha256 hash mismatch for Android 13 TV image, indicating a corrupted download. This might be due to a network error, you can try again.
 				cleanup_exit
 			fi
+
 			echo Extracting Archive
 			echo -e "$current_password\n" | sudo -S unzip -o ~/waydroid/custom/android13tv -d ~/waydroid/custom
 			echo -e "$current_password\n" | sudo -S rm ~/waydroid/custom/android13tv.zip
+
 			echo Applying fix for Leanback Keyboard
 			echo -e "$current_password\n" | sudo -S cp extras/ATV-Generic.kl /var/lib/waydroid/overlay/system/usr/keylayout/Generic.kl
+
 			echo Initializing Waydroid
  			echo -e "$current_password\n" | sudo -S waydroid init
 			check_waydroid_init
-   		fi
-	
+
+		elif [ "$Choice" == "A13_NO_GAPPS" ]
+		then
+			echo Downloading Android 13 image
+			echo -e "$current_password\n" | sudo -S curl -o ~/waydroid/custom/android13.zip $ANDROID13_IMG -L
+			hash=$(sha256sum "/home/deck/waydroid/custom/android13.zip" | awk '{print $1}')
+			# Verify the hash
+			if [[ "$hash" != "$ANDROID13_IMG_HASH" ]]; then
+				echo sha256 hash mismatch for Android 13 image, indicating a corrupted download. This might be due to a network error, you can try again.
+				cleanup_exit
+			fi
+
+			echo Extracting Archive
+			echo -e "$current_password\n" | sudo -S unzip -o ~/waydroid/custom/android13 -d ~/waydroid/custom
+			echo -e "$current_password\n" | sudo -S rm ~/waydroid/custom/android13.zip
+
+			echo Initializing Waydroid
+ 			echo -e "$current_password\n" | sudo -S waydroid init
+			check_waydroid_init
+		fi
+
 	# change GPU rendering to use minigbm_gbm_mesa
 	echo -e $PASSWORD\n | sudo -S sed -i "s/ro.hardware.gralloc=.*/ro.hardware.gralloc=minigbm_gbm_mesa/g" /var/lib/waydroid/waydroid_base.prop
 
@@ -399,6 +446,9 @@ else
 	echo steamos-nested-desktop shortcut has been added to Game Mode.
 
 	# all done lets re-enable the readonly
+	echo -e "$current_password\n" | sudo -S steamos-readonly enable
+	echo Waydroid has been successfully installed!
+fi
 	echo -e "$current_password\n" | sudo -S steamos-readonly enable
 	echo Waydroid has been successfully installed!
 fi
