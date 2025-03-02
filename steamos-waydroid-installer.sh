@@ -13,6 +13,7 @@ kernel_version=$(uname -r | cut -d "-" -f 1-5 )
 stable_kernel1=6.1.52-valve16-1-neptune-61
 stable_kernel2=6.5.0-valve22-1-neptune-65
 beta_kernel1=6.5.0-valve23-1-neptune-65
+main_kernel1=6.11.11-valve6-3-neptune-611
 ANDROID11_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android11TV/lineage-18.1-20241220-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
 ANDROID11_TV_IMG_HASH=680971aaeb9edc64d9d79de628bff0300c91e86134f8daea1bbc636a2476e2a7
 ANDROID13_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13TV/lineage-20-20250117-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
@@ -29,19 +30,32 @@ PLUGIN_LOADER=/home/deck/homebrew/services/PluginLoader
 # define functions here
 cleanup_exit () {
 	# call this function to perform cleanup when a sanity check fails
+	
 	# remove binder kernel module
 	echo Something went wrong! Performing cleanup. Run the script again to install waydroid.
 	echo -e "$current_password\n" | sudo -S rm /lib/modules/$(uname -r)/binder_linux.ko.zst &> /dev/null
+	
 	# remove installed packages
 	echo -e "$current_password\n" | sudo -S pacman -R --noconfirm libglibutil libgbinder python-gbinder waydroid wlroots dnsmasq lxc &> /dev/null
+	
 	# delete the waydroid directories
 	echo -e "$current_password\n" | sudo -S rm -rf ~/waydroid /var/lib/waydroid ~/AUR &> /dev/null
+	
 	# delete waydroid config and scripts
 	echo -e "$current_password\n" | sudo -S rm /etc/sudoers.d/zzzzzzzz-waydroid /etc/modules-load.d/waydroid.conf /usr/bin/waydroid* &> /dev/null
+	
 	# delete cage binaries
 	echo -e "$current_password\n" | sudo -S rm /usr/bin/cage /usr/bin/wlr-randr &> /dev/null
 	echo -e "$current_password\n" | sudo -S rm -rf ~/Android_Waydroid &> /dev/null
 	echo -e "$current_password\n" | sudo -S steamos-readonly enable &> /dev/null
+	
+	# re-enable Decky Loader Plugin Loader service
+	if [ -f $PLUGIN_LOADER ]
+	then
+		echo Re-enabling the Decky Loader plugin loader service.
+		echo -e "$current_password\n" | sudo -S systemctl start plugin_loader.service
+	fi
+	
 	echo Cleanup completed. Please open an issue on the GitHub repo or leave a comment on the YT channel - 10MinuteSteamDeckGamer.
 	exit
 }
@@ -85,12 +99,24 @@ install_android_extras () {
 	then
 		echo Casualsnek script done.
 		echo -e "$current_password\n" | sudo -S rm -rf ~/AUR
-
-		# lets change the fingerprint so waydroid shows up as a Pixel 5 - Redfin
-		{ echo -e "$current_password\n" ; cat extras/waydroid_base.prop ; } | sudo -S tee -a /var/lib/waydroid/waydroid_base.prop
 	else
 		echo Error with casualsnek script. Run the script again.
 		cleanup_exit
+	fi
+}
+
+install_android_spoof () {
+	# waydroid_base.prop - controller config and disable root
+	cat extras/waydroid_base.prop | sudo tee -a /var/lib/waydroid/waydroid_base.prop > /dev/null
+
+	# check if A11 or A13 and apply the spoof accordingly
+	if [ "$Choice" == "A11_NO_GAPPS" ] || [ "$Choice" == "A11_GAPPS" ] || [ "$Choice" == "A13_NO_GAPPS" ]
+	then
+		cat extras/android_spoof.prop | sudo tee -a /var/lib/waydroid/waydroid_base.prop > /dev/null
+
+	elif [ "$Choice" == "TV11_NO_GAPPS" ] || [ "$Choice" == "TV13_NO_GAPPS" ]
+	then
+		cat extras/androidtv_spoof.prop | sudo tee -a /var/lib/waydroid/waydroid_base.prop > /dev/null
 	fi
 }
 
@@ -194,7 +220,8 @@ then
 	if [ $? -eq 0 ]
 	then
 		echo Decky Loader Plugin Loader service successfully disabled.
-		echo Once the script has finished installing Waydroid, reboot the Steam Deck to re-activate the Decky Loader Plugin Loader service.
+		echo Once the script has finished installing Waydroid, the Decky Loader Plugin Loader service will be re-enabled.
+	  echo You can also reboot the Steam Deck to re-activate the Decky Loader Plugin Loader service.
 	else
 		echo Error ecountered when stopping the Decky Loader Plugin Loader service.
 		echo Exiting immediately.
@@ -264,8 +291,15 @@ else
 	echo Binder kernel module already loaded and up to date! No need to reinstall binder!
 fi
 
+
+#install packages exclusively compiled for this release
+echo -e "$current_password\n" | sudo -S pacman -S dnsmasq lxc debugedit
+echo -e "$current_password\n" | sudo -S pacman -U waydroid/waydroid-1.4.3-1-any.pkg.tar.zst waydroid/libgbinder-1.1.40-2-x86_64.pkg.tar.zst \
+waydroid/python-gbinder-1.1.2-2-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.79-2-x86_64.pkg.tar.zst cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
+
 # ok lets install waydroid and cage
-echo -e "$current_password\n" | sudo -S pacman -U cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst waydroid/dnsmasq-2.89-1-x86_64.pkg.tar.zst \
+# dnsmasq + lxc need not to be included anymore pre-compiled
+# echo -e "$current_password\n" | sudo -S pacman -U cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst waydroid/dnsmasq-2.89-1-x86_64.pkg.tar.zst \
 	waydroid/lxc-1\:5.0.3-1-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.74-1-x86_64.pkg.tar.zst waydroid/libgbinder-1.1.35-1-x86_64.pkg.tar.zst \
 	waydroid/python-gbinder-1.1.2-1-x86_64.pkg.tar.zst waydroid/waydroid-1.4.3-1-any.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
 
@@ -304,13 +338,12 @@ echo -e "$current_password\n" | sudo -S chmod +x /usr/bin/waydroid-startup-scrip
 echo -e "$current_password\n" | sudo -S cp extras/zzzzzzzz-waydroid /etc/sudoers.d/zzzzzzzz-waydroid
 echo -e "$current_password\n" | sudo -S chown root:root /etc/sudoers.d/zzzzzzzz-waydroid
 
-# waydroid launcher - cage
-cp extras/Android_Waydroid_Cage.sh ~/Android_Waydroid/Android_Waydroid_Cage.sh
-
 # custom configs done. lets move them to the correct location
-cp $PWD/extras/Waydroid-Toolbox.sh $PWD/extras/Android_Waydroid_Cage-experimental.sh ~/Android_Waydroid
+cp extras/Android_Waydroid_Cage.sh extras/Waydroid-Toolbox.sh extras/Waydroid-Updater.sh extras/Android_Waydroid_Cage-experimental.sh ~/Android_Waydroid
 chmod +x ~/Android_Waydroid/*.sh
+# desktop shortcuts for toolbox + updater
 ln -s ~/Android_Waydroid/Waydroid-Toolbox.sh ~/Desktop/Waydroid-Toolbox &> /dev/null
+ln -s ~/Android_Waydroid/Waydroid-Updater.sh ~/Desktop/Waydroid-Updater &> /dev/null
 
 # lets copy cage and wlr-randr to the correct folder
 echo -e "$current_password\n" | sudo -S cp cage/cage cage/wlr-randr /usr/bin
@@ -354,7 +387,6 @@ else
 	chmod +x extras/nodataperm.sh
 	echo -e "$current_password\n" | sudo -S cp extras/nodataperm.sh /var/lib/waydroid/overlay/system/etc
 
-
 	Choice=$(zenity --width 1040 --height 300 --list --radiolist --multiple \
 		--title "SteamOS Waydroid Installer  - https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer"\
 		--column "Select One" \
@@ -380,6 +412,9 @@ else
 
 			echo Install libndk, widevine and fingerprint spoof
 			install_android_extras
+			
+			echo Applying appropriate spoof
+			install_android_spoof
 
 		elif [ "$Choice" == "A11_NO_GAPPS" ]
 		then
@@ -389,6 +424,9 @@ else
 
 			echo Install libndk, widevine and fingerprint spoof
 			install_android_extras
+			
+			echo Applying appropriate spoof
+			install_android_spoof
 
 		elif [ "$Choice" == "TV11_NO_GAPPS" ]
 		then
@@ -402,6 +440,9 @@ else
  			echo -e "$current_password\n" | sudo -S waydroid init
 			check_waydroid_init
 
+			echo Applying appropriate spoof
+			install_android_spoof
+
 		elif [ "$Choice" == "TV13_NO_GAPPS" ]
 		then
 			prepare_custom_image_location
@@ -413,6 +454,9 @@ else
 			echo Initializing Waydroid
  			echo -e "$current_password\n" | sudo -S waydroid init
 			check_waydroid_init
+			
+			echo Applying appropriate spoof
+			install_android_spoof
 
 		elif [ "$Choice" == "A13_NO_GAPPS" ]
 		then
@@ -422,6 +466,9 @@ else
 			echo Initializing Waydroid
  			echo -e "$current_password\n" | sudo -S waydroid init
 			check_waydroid_init
+			
+			echo Applying appropriate spoof
+			install_android_spoof
 		fi
 
 	# change GPU rendering to use minigbm_gbm_mesa
@@ -438,6 +485,13 @@ else
 	# all done lets re-enable the readonly
 	echo -e "$current_password\n" | sudo -S steamos-readonly enable
 	echo Waydroid has been successfully installed!
+fi
+
+# sanity check - re-enable decky loader service if it's installed.
+if [ -f $PLUGIN_LOADER ]
+then
+	echo Re-enabling the Decky Loader plugin loader service.
+	echo -e "$current_password\n" | sudo -S systemctl start plugin_loader.service
 fi
 
 if zenity --question --text="Do you Want to Return to Gaming Mode?"; then
