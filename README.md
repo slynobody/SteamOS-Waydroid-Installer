@@ -1,5 +1,6 @@
 # Android for SteamOS 3.8 
-## waydroid, SteamOS-3.8-compatible (plasma 6.3, kernel 6.11, latest python)
+## waydroid, SteamOS-3.8-compatible 
+### (SteamOS 3.8: plasma 6.3, kernel 6.11, latest python etc.)
 
 1. basics: copy/paste > konsole
 > sudo steamos-readonly disable
@@ -18,15 +19,13 @@
 >
 > chmod +x *.sh
 
-2. Install basic packages & compile binder yourself (binder kernel-module, latest lxc + dnsmasq from aur, going back to main script)
+2. Install basic packages & locally compile binder (kernel-module + install latest lxc + dnsmasq from aur)
 > ./3_8_kernel_module_build.sh
 
-or.
-
-2. directly install through script (precompiled packages for latest, thanks to https://github.com/parkerlreed))
+3. install through adapted main-script (precompiled packages for latest, thanks to https://github.com/parkerlreed))
 > ./steamos-waydroid-installer.sh
 
-3. Use privacy-friendly appstore to install your apps (also consider installing fstore)
+4. Use privacy-friendly appstore to install your apps (also consider installing fstore)
 > wget https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk
 >
 > waydroid app install ./com.aurora.store_47.apk
