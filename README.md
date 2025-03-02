@@ -1,5 +1,5 @@
-# Android on SteamOS 3.7 ('waydroid' on main-channel, latest)
-## waydroid, SteamOS-3.7-compatible (plasma 6.25, kernel 6.11, latest python)
+# Android for SteamOS 3.8 ('waydroid' / main-channel, latest)
+## waydroid, SteamOS-3.8-compatible (plasma 6.3, kernel 6.11, latest python)
 
 1. basics: copy/paste > konsole
 > sudo steamos-readonly disable
@@ -19,11 +19,11 @@
 > chmod +x *.sh
 
 2. Install basic packages & compile binder yourself (binder kernel-module, latest lxc + dnsmasq from aur, going back to main script)
-> ./3_7_kernel_module_build.sh
+> ./3_8_kernel_module_build.sh
 
 or.
 
-2. directly install through script (precompiled packages for latest 3.7+, thanks to https://github.com/parkerlreed))
+2. directly install through script (precompiled packages for latest, thanks to https://github.com/parkerlreed))
 > ./steamos-waydroid-installer.sh
 
 3. Use privacy-friendly appstore to install your apps (also consider installing fstore)
@@ -34,7 +34,7 @@ or.
 enjoy.
 
 # FAQ
-## how do i get SteamOS 3.7?
+## how do i get SteamOS 3.8?
 > Enter 'developer mode' (https://tuxexplorer.com/how-to-enable-developer-mode-on-steam-deck)
 > 
 > in developer-tab left enable 'extended update-channels'
