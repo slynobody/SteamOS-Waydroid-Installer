@@ -1,4 +1,4 @@
-# Android for SteamOS 3.8 ('waydroid' / main-channel, latest)
+# Android for SteamOS 3.8 
 ## waydroid, SteamOS-3.8-compatible (plasma 6.3, kernel 6.11, latest python)
 
 1. basics: copy/paste > konsole
