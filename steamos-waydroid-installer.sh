@@ -91,18 +91,22 @@ download_image () {
 }
 
 install_android_extras () {
-	# casualsnek script
-	python3 -m venv $DIR_CASUALSNEK/venv
-	$DIR_CASUALSNEK/venv/bin/pip install -r $DIR_CASUALSNEK/requirements.txt &> /dev/null
-	echo -e "$current_password\n" | sudo -S $DIR_CASUALSNEK/venv/bin/python3 $DIR_CASUALSNEK/main.py install {libndk,widevine}
-	if [ $? -eq 0 ]
+	
+ 
+ # casualsnek script
+if [ "$Choice" == "A11_NO_GAPPS" ] || [ "$Choice" == "A11_GAPPS" ] || [ "$Choice" == "TV11_NO_GAPPS ]
 	then
-		echo Casualsnek script done.
-		echo -e "$current_password\n" | sudo -S rm -rf ~/AUR
-	else
-		echo Error with casualsnek script. Run the script again.
-		cleanup_exit
+ 		python3 -m venv $DIR_CASUALSNEK/venv
+		$DIR_CASUALSNEK/venv/bin/pip install -r $DIR_CASUALSNEK/requirements.txt &> /dev/null
+		echo -e "$current_password\n" | sudo -S $DIR_CASUALSNEK/venv/bin/python3 $DIR_CASUALSNEK/main.py install {libndk,widevine}
+	elif [ "$Choice" == "A13_NO_GAPPS" ] || [ "$Choice" == "TV13_NO_GAPPS" ]
+	then
+  	python3 -m venv $DIR_CASUALSNEK/venv
+		$DIR_CASUALSNEK/venv/bin/pip install -r $DIR_CASUALSNEK/requirements.txt &> /dev/null
+		echo -e "$current_password\n" | sudo -S $DIR_CASUALSNEK/venv/bin/python3 $DIR_CASUALSNEK/main.py install {libndk}
+  	curl -L https://github.com/Waydroid-ATV/androidtv_scripts/raw/refs/heads/main/install-widevine-a13.sh | sudo bash -eu
 	fi
+
 }
 
 install_android_spoof () {
@@ -151,7 +155,7 @@ fi
 
 # sanity check - make sure kernel version is supported. exit immediately if not on the supported kernel
 echo Checking if kernel is supported.
-if [ $kernel_version = $stable_kernel1 ] || [ $kernel_version = $stable_kernel2 ] || [ $kernel_version = $beta_kernel1 ]
+if [ $kernel_version = $stable_kernel1 ] || [ $kernel_version = $stable_kernel2 ] || [ $kernel_version = $beta_kernel1 ] || [ $kernel_version = $main_kernel1 ]
 then
 	echo SteamOS $steamos_version - kernel version $kernel_version is supported. Proceed to next step.
 else
@@ -293,7 +297,7 @@ fi
 
 
 #install packages exclusively compiled for this release
-echo -e "$current_password\n" | sudo -S pacman -S dnsmasq lxc debugedit
+sudo pacman -S dnsmasq lxc debugedit --noconfirm
 echo -e "$current_password\n" | sudo -S pacman -U waydroid/waydroid-1.4.3-1-any.pkg.tar.zst waydroid/libgbinder-1.1.40-2-x86_64.pkg.tar.zst \
 waydroid/python-gbinder-1.1.2-2-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.79-2-x86_64.pkg.tar.zst cage/wlroots-0.16.2-1-x86_64.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
 
@@ -303,14 +307,14 @@ waydroid/python-gbinder-1.1.2-2-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.79-2
 	waydroid/lxc-1\:5.0.3-1-x86_64.pkg.tar.zst waydroid/libglibutil-1.0.74-1-x86_64.pkg.tar.zst waydroid/libgbinder-1.1.35-1-x86_64.pkg.tar.zst \
 	waydroid/python-gbinder-1.1.2-1-x86_64.pkg.tar.zst waydroid/waydroid-1.4.3-1-any.pkg.tar.zst --noconfirm --overwrite "*" &> /dev/null
 
-if [ $? -eq 0 ]
-then
+#if [ $? -eq 0 ]
+#then
 	echo waydroid and cage has been installed!
 	echo -e "$current_password\n" | sudo -S systemctl disable waydroid-container.service
-else
-	echo Error installing waydroid and cage. Run the script again to install waydroid.
-	cleanup_exit
-fi
+#else
+	#echo Error installing waydroid and cage. Run the script again to install waydroid.
+	#cleanup_exit
+#fi
 
 # firewall config for waydroid0 interface to forward packets for internet to work
 echo -e "$current_password\n" | sudo -S firewall-cmd --zone=trusted --add-interface=waydroid0 &> /dev/null
