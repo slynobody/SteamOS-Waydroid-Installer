@@ -13,7 +13,7 @@ kernel_version=$(uname -r | cut -d "-" -f 1-5 )
 stable_kernel1=6.1.52-valve16-1-neptune-61
 stable_kernel2=6.5.0-valve22-1-neptune-65
 beta_kernel1=6.5.0-valve23-1-neptune-65
-main_kernel1=6.11.11-valve6-3-neptune-611
+main_kernel1=6.11.11-valve7-1-neptune-611
 ANDROID11_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android11TV/lineage-18.1-20241220-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
 ANDROID11_TV_IMG_HASH=680971aaeb9edc64d9d79de628bff0300c91e86134f8daea1bbc636a2476e2a7
 ANDROID13_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13TV/lineage-20-20250117-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
@@ -94,7 +94,7 @@ install_android_extras () {
 	
  
  # casualsnek script
-if [ "$Choice" == "A11_NO_GAPPS" ] || [ "$Choice" == "A11_GAPPS" ] || [ "$Choice" == "TV11_NO_GAPPS ]
+if [ "$Choice" == "A11_NO_GAPPS" ] || [ "$Choice" == "A11_GAPPS" ] || [ "$Choice" == "TV11_NO_GAPPS" ]
 	then
  		python3 -m venv $DIR_CASUALSNEK/venv
 		$DIR_CASUALSNEK/venv/bin/pip install -r $DIR_CASUALSNEK/requirements.txt &> /dev/null
@@ -261,7 +261,7 @@ else
 fi
 
 # disable the SteamOS readonly
-echo -e "$current_password\n" | sudo -S steamos-readonly disable
+echo -e "$current_password\n" | sudo -S sudo steamos-devmode enable --no-prompt
 
 # initialize the keyring
 echo -e "$current_password\n" | sudo -S pacman-key --init && echo -e "$current_password\n" | sudo -S pacman-key --populate
