@@ -3,13 +3,7 @@
 ### (SteamOS 3.8: plasma 6.3, kernel 6.11, latest python etc.)
 
 1. basics: copy/paste > konsole
-> sudo steamos-readonly disable
-> 
-> sudo pacman-key --init
-> 
-> sudo pacman-key --populate archlinux
-> 
-> sudo pacman-key --populate holo
+> sudo steamos-devmode enable --no-prompt
 > 
 > sudo pacman -S git
 > 
@@ -21,6 +15,8 @@
 
 2. Install basic packages & locally compile binder (kernel-module + install latest lxc + dnsmasq from aur)
 > ./3_8_kernel_module_build.sh
+> or
+> ./3_7_kernel_module_build.sh
 
 3. install through adapted main-script (precompiled packages for latest, thanks to https://github.com/parkerlreed))
 > ./steamos-waydroid-installer.sh
