@@ -13,7 +13,9 @@ kernel_version=$(uname -r | cut -d "-" -f 1-5 )
 stable_kernel1=6.1.52-valve16-1-neptune-61
 stable_kernel2=6.5.0-valve22-1-neptune-65
 beta_kernel1=6.5.0-valve23-1-neptune-65
-main_kernel1=6.11.11-valve7-1-neptune-611
+preview_kernel1=
+main_kernel1=6.11.11-valve8-1-neptune-611
+main_kernel2=6.11.11-valve9-2-neptune-611
 ANDROID11_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android11TV/lineage-18.1-20241220-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
 ANDROID11_TV_IMG_HASH=680971aaeb9edc64d9d79de628bff0300c91e86134f8daea1bbc636a2476e2a7
 ANDROID13_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13TV/lineage-20-20250117-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
@@ -155,7 +157,7 @@ fi
 
 # sanity check - make sure kernel version is supported. exit immediately if not on the supported kernel
 echo Checking if kernel is supported.
-if [ $kernel_version = $stable_kernel1 ] || [ $kernel_version = $stable_kernel2 ] || [ $kernel_version = $beta_kernel1 ] || [ $kernel_version = $main_kernel1 ]
+if [ $kernel_version = $stable_kernel1 ] || [ $kernel_version = $stable_kernel2 ] || [ $kernel_version = $beta_kernel1 ] || [ $kernel_version = $main_kernel1 ] || [ $kernel_version = $main_kernel2 ] || [ $kernel_version = $preview_kernel1 ]
 then
 	echo SteamOS $steamos_version - kernel version $kernel_version is supported. Proceed to next step.
 else
