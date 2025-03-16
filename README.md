@@ -1,5 +1,5 @@
-# Android for SteamOS 3.8 
-## waydroid, SteamOS-3.8-compatible 
+# Android for SteamOS 3.8
+## waydroid, SteamOS-3.8-compatible (+3.7 preview)
 ### (SteamOS 3.8: plasma 6.3, kernel 6.11, latest python etc.)
 
 1. basics: copy/paste > konsole
