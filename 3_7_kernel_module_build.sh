@@ -4,7 +4,7 @@ sudo pacman -S fakeroot dkms dnsmasq lxc debugedit
 
 #get & install latest headers, 'main'-context
 sudo wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-611-headers-6.11.11.valve8-1-x86_64.pkg.tar.zst
-sudo pacman -U ./linux-neptune-611-headers-6.11.11.valve8-1-x86_64.pkg.tar.zst
+sudo pacman -U ./linux-neptune-611-headers-6.11.11.valve10-1-x86_64.pkg.tar.zst
 
 #get & install latest binder-dkms (which builds the missing kernel-module)
 git clone https://aur.archlinux.org/binder_linux-dkms.git
@@ -13,9 +13,9 @@ makepkg
 sudo pacman -U ./binder_linux-dkms-6.14-1-x86_64.pkg.tar.zst
 
 cd ..
-mkdir binder/6.11.11-valve8-1-neptune-611
+mkdir binder/6.11.11-valve10-1-neptune-611
 #offer the kernel-module to the sd-waydroid-installer (or manually adapt to include 3.7 latest)
-sudo cp /usr/lib/modules/6.11.11-valve8-1-neptune-611-g9b073eb8166e/updates/dkms/binder_linux.ko.zst binder/6.11.11-valve8-1-neptune-611
+sudo cp /usr/lib/modules/6.11.11-valve10-1-neptune-611-gb69e902b4338/updates/dkms/binder_linux.ko.zst binder/6.11.11-valve10-1-neptune-611
 
 
 #remove now unnec packages (nec for future reinstalls!)
