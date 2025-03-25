@@ -3,7 +3,7 @@ sudo steamos-devmode enable --no-prompt
 sudo pacman -S fakeroot dkms dnsmasq lxc debugedit
 
 #get & install latest headers, 'main'-context
-sudo wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-611-headers-6.11.11.valve8-1-x86_64.pkg.tar.zst
+sudo wget https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-neptune-611-headers-6.11.11.valve10-1-x86_64.pkg.tar.zst
 sudo pacman -U ./linux-neptune-611-headers-6.11.11.valve10-1-x86_64.pkg.tar.zst
 
 #get & install latest binder-dkms (which builds the missing kernel-module)
