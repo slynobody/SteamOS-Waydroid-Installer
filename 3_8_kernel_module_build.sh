@@ -15,7 +15,7 @@ sudo pacman -U ./binder_linux-dkms-6.14-1-x86_64.pkg.tar.zst
 cd ..
 mkdir binder/6.11.11-valve17-1-neptune-611
 #offer the kernel-module to the sd-waydroid-installer (one has always to adapt the script to include 3.8 latest)
-sudo cp /usr/lib/modules/6.11.11-valve17-1-neptune-611-ge8f294c56322/updates/dkms/binder_linux.ko.zst binder/6.11.11-valve17-1-neptune-611
+sudo cp /usr/lib/modules/6.11.11-valve17-1-neptune-611-g027868a0ac03/updates/dkms/binder_linux.ko.zst binder/6.11.11-valve17-1-neptune-611
 
 #remove now unnec packages (nec for future reinstalls!)
 sudo  pacman -R fakeroot dkms binder_linux-dkms linux-neptune-611-headers
