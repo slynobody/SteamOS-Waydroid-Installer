@@ -13,11 +13,11 @@
 > chmod +x *.sh
 
 2. Install basic packages & locally compile binder (kernel-module + install latest lxc + dnsmasq from aur)
-> ./3_8_kernel_module_build.sh
+> ./3_7_kernel_module_build.sh
 > 
  or
 > 
-> ./3_7_kernel_module_build.sh
+> ./3_8_kernel_module_build.sh
 
 3. install through adapted main-script (precompiled packages for latest, thanks to https://github.com/parkerlreed))
 > ./steamos-waydroid-installer.sh
