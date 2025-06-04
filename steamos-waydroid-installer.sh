@@ -2,10 +2,7 @@
 
 clear
 
-echo SteamOS Waydroid Installer Script by ryanrudolf
-echo https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
-echo YT - 10MinuteSteamDeckGamer
-sleep 2
+echo SteamOS Waydroid Installer Script by ryanrudolf // slightly adapted
 
 # define variables here
 script_version_sha=$(git rev-parse --short HEAD)
@@ -13,6 +10,8 @@ steamos_version=$(cat /etc/os-release | grep -i version_id | cut -d "=" -f2)
 kernel_version=$(uname -r | cut -d "-" -f 1-5 )
 stable_kernel1=6.11.11-valve14-1-neptune-611
 beta_kernel1=6.11.11-valve17-1-neptune-611
+preview_kernel1=6.11.11-valve17-1-neptune-611
+main_kernel1=6.11.11-valve17-1-neptune-611
 WAYDROID_SCRIPT=https://github.com/casualsnek/waydroid_script.git
 DIR_WAYDROID_SCRIPT=$(mktemp -d)/waydroid_script
 FREE_HOME=$(df /home --output=avail | tail -n1)
@@ -20,37 +19,21 @@ FREE_VAR=$(df /var --output=avail | tail -n1)
 PLUGIN_LOADER=/home/deck/homebrew/services/PluginLoader
 
 # android TV builds
-ANDROID11_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android11TV/lineage-18.1-20241220-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
-ANDROID13_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13TV/lineage-20-20250117-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
+ANDROID11_TV_IMG=https://github.com/supechicken/waydroid-androidtv-build/releases/download/20241207/lineage-18.1-20241207-UNOFFICIAL-SupeChicken666-WaydroidATV.zip
+ANDROID13_TV_IMG=https://github.com/supechicken/waydroid-androidtv-build/releases/download/20250327/lineage-20.0-20250327-UNOFFICIAL-WaydroidATV_x86_64.zip
 
-# old android 13 builds as of May 03 2025
-#ANDROID13_GAPPS_IMG=https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-20-20250503-GAPPS-waydroid_x86_64-system.zip/download#
+# android TV hash
+ANDROID11_TV_IMG_HASH=be4143f65d4c8521a90b73eb93c66c5a0c48c4649f7de3241fca021648244b51
+ANDROID13_TV_IMG_HASH=44d77c229f4737dfca6e360cdc06a6a2860717b504038b11b0216ed8a51f6a5a
 
-#ANDROID13_NOGAPPS_IMG=https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-20-20250503-VANILLA-waydroid_x86_64-system.zip/download#
-
-#ANDROID13_VENDOR_IMG=https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/lineage-20-20250503-MAINLINE-waydroid_x86_64-vendor.zip/download#
-
-# new android 13 builds as of May 31 2025
+# android 13 builds as of May 31 2025
 ANDROID13_GAPPS_IMG=https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-20.0-20250531-GAPPS-waydroid_x86_64-system.zip/download#
 ANDROID13_NOGAPPS_IMG=https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-20.0-20250531-VANILLA-waydroid_x86_64-system.zip/download#
 ANDROID13_VENDOR_IMG=https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/lineage-20.0-20250531-MAINLINE-waydroid_x86_64-vendor.zip/download#
 
-# android TV hash
-ANDROID11_TV_IMG_HASH=680971aaeb9edc64d9d79de628bff0300c91e86134f8daea1bbc636a2476e2a7
-ANDROID13_TV_IMG_HASH=2ac5d660c3e32b8298f5c12c93b1821bc7ccefbd7cfbf5fee862e169aa744f4c
-
-# old android 13 hash for build date as of May 03 2025
-#ANDROID13_GAPPS_IMG_HASH=3c6eb7235e2bb4c4568194a33147017b6ab2e136467e8c5864b30a3e3e09e39e
-
-#ANDROID13_NOGAPPS_IMG_HASH=60e2bbb7b821132b4518c9fa22581845742e09edd858831465e91a8a6b9c4087
-
-#ANDROID13_VENDOR_IMG_HASH=e5331c517553873620b547e02fd972df40cf060ddad37856fa15f22442ae87f3
-
-# new android 13 hash for build date as of May 31 2025
+# android 13 hash for build date as of May 31 2025
 ANDROID13_GAPPS_IMG_HASH=2f1b81436de172658f5008adae16ef429339d09348fd713e9f3029130ac72467
-
 ANDROID13_NOGAPPS_IMG_HASH=e01fbdcaa17369c6373c52e40110e38a1e80bd481b1694bbe94c513683ee8070
-
 ANDROID13_VENDOR_IMG_HASH=4e99d932ffb34ec4d69eda41ee484c19d43dcc7e35ac3ef4ec4a66cf7671f915
 
 echo script version: $script_version_sha
@@ -213,8 +196,8 @@ else
 		FALSE A11_GAPPS "Download official Android 11 image with Google Play Store."\
 		FALSE A13_NO_GAPPS "Download official Android 13 image without Google Play Store."\
 		FALSE A11_NO_GAPPS "Download official Android 11 image without Google Play Store."\
-		FALSE TV13_NO_GAPPS "Download unofficial Android 13 TV image without Google Play Store - thanks SupeChicken666 for the build instructions!" \
-		FALSE TV11_NO_GAPPS "Download unofficial Android 11 TV image without Google Play Store - thanks SupeChicken666 for the build instructions!" \
+		FALSE TV13_NO_GAPPS "Download unofficial Android 13 TV image without Google Play Store - thanks SupeChicken666!" \
+		FALSE TV11_NO_GAPPS "Download unofficial Android 11 TV image without Google Play Store - thanks SupeChicken666!" \
 		FALSE EXIT "***** Exit this script *****")
 
 		if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
