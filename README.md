@@ -1,5 +1,5 @@
 # Android for SteamOS 3.7 / 3.8
-## waydroid for stable, beta, main-channel
+## waydroid for stable, beta, main-channel, incl. auto-compiling of binder-module (for current kernel)
 
 1. basics: copy/paste > konsole
 > sudo steamos-devmode enable --no-prompt
@@ -12,7 +12,7 @@
 >
 > chmod +x *.sh
 
-2. if needed: build binder module according to your channel (binder module will be compiled locallz + latest lxc + dnsmasq from aur, thanks for precompiled packages to https://github.com/parkerlreed))
+2. build binder module according to your channel (binder module will be compiled locally) & start waydroid-installation / update
 > ./build_stable.sh
 > 
  or
@@ -29,12 +29,21 @@ enjoy.
 
 # FAQ
 
-## read the above.
-read it.
+## read the faqs.
+simply read it. and if you have problems, try to also think for yourself. incl. what errors you might have done.
 
 ## i have problems downloading images / want a more current version of the android-images.
-atv13 latest is included.
-Take a look into the main-script: links to recent images are already there, sha256-hashes: diy!
+android-tv13 latest is included (https://github.com/supechicken/waydroid-androidtv-build)
+
+## how do i do a complete uninstall of waydroid (without wiping my data)? f.e. for a clean reinstall? 
+> ./uninstall.sh
+
+## things got updated on github, how do i update locally?
+> git pull
+
+or
+
+> extras/Waydroid-Updater.sh
 
 ## how do i get SteamOS 3.8?
 > Enter 'developer mode' (https://tuxexplorer.com/how-to-enable-developer-mode-on-steam-deck)
