@@ -3,8 +3,7 @@
 clear
 
 echo SteamOS Waydroid Installer Script by ryanrudolf
-echo https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
-echo YT - 10MinuteSteamDeckGamer
+echo https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer // adapted by sln
 sleep 2
 
 # define variables here
@@ -14,6 +13,8 @@ kernel_version=$(uname -r | cut -d "-" -f 1-5 )
 stable_kernel1=6.11.11-valve14-1-neptune-611
 beta_kernel1=6.11.11-valve17-1-neptune-611
 beta_kernel2=6.11.11-valve19-1-neptune-611
+preview_kernel1=6.11.11-valve19-1-neptune-611
+main_kernel1=6.11.11-valve19-1-neptune-611
 WAYDROID_SCRIPT=https://github.com/casualsnek/waydroid_script.git
 DIR_WAYDROID_SCRIPT=$(mktemp -d)/waydroid_script
 FREE_HOME=$(df /home --output=avail | tail -n1)
@@ -21,8 +22,8 @@ FREE_VAR=$(df /var --output=avail | tail -n1)
 PLUGIN_LOADER=/home/deck/homebrew/services/PluginLoader
 
 # android TV builds
-ANDROID11_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android11TV/lineage-18.1-20241220-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
-ANDROID13_TV_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13TV/lineage-20-20250117-UNOFFICIAL-10MinuteSteamDeckGamer-WaydroidATV.zip
+ANDROID11_TV_IMG=https://github.com/supechicken/waydroid-androidtv-build/releases/download/20241207/lineage-18.1-20241207-UNOFFICIAL-SupeChicken666-WaydroidATV.zip
+ANDROID13_TV_IMG=https://github.com/supechicken/waydroid-androidtv-build/releases/download/20250327/lineage-20.0-20250327-UNOFFICIAL-WaydroidATV_x86_64.zip
 
 # old android 13 builds as of May 03 2025
 #ANDROID13_GAPPS_IMG=https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-20-20250503-GAPPS-waydroid_x86_64-system.zip/download#
@@ -212,8 +213,8 @@ else
 		FALSE A11_GAPPS "Download official Android 11 image with Google Play Store."\
 		FALSE A13_NO_GAPPS "Download official Android 13 image without Google Play Store."\
 		FALSE A11_NO_GAPPS "Download official Android 11 image without Google Play Store."\
-		FALSE TV13_NO_GAPPS "Download unofficial Android 13 TV image without Google Play Store - thanks SupeChicken666 for the build instructions!" \
-		FALSE TV11_NO_GAPPS "Download unofficial Android 11 TV image without Google Play Store - thanks SupeChicken666 for the build instructions!" \
+		FALSE TV13_NO_GAPPS "Download unofficial Android 13 TV image without Google Play Store - thanks SupeChicken666!" \
+		FALSE TV11_NO_GAPPS "Download unofficial Android 11 TV image without Google Play Store - thanks SupeChicken666!" \
 		FALSE EXIT "***** Exit this script *****")
 
 		if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
