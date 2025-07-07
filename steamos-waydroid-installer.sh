@@ -10,7 +10,7 @@ sleep 2
 script_version_sha=$(git rev-parse --short HEAD)
 steamos_version=$(cat /etc/os-release | grep -i version_id | cut -d "=" -f2)
 kernel_version=$(uname -r | cut -d "-" -f 1-5 )
-stable_kernel1=6.11.11-valve14-1-neptune-611
+stable_kernel1=6.11.11-valve19-1-neptune-611
 beta_kernel1=6.11.11-valve19-1-neptune-611
 beta_kernel2=6.11.11-valve19-1-neptune-611
 preview_kernel1=6.11.11-valve19-1-neptune-611
