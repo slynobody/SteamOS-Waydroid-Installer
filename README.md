@@ -27,8 +27,7 @@ enjoy.
 read it.
 
 ## i have problems downloading images / want a more current version of the android-images.
-atv13 latest is included.
-Take a look into the main-script: links to recent images are already there, sha256-hashes: diy!
+atv13 latest is included. (supechicken)
 
 ## how do i get SteamOS 3.8?
 > Enter 'developer mode' (https://tuxexplorer.com/how-to-enable-developer-mode-on-steam-deck)
