@@ -22,14 +22,14 @@ else
 fi
 
 # sanity check - make sure the update channel is rel (stable) or beta
-steamos-select-branch -c | grep -e rel -e beta &> /dev/null
-if [ $? -eq 0 ]
-then
-	echo SteamOS $(steamos-select-branch -c) branch detected. Proceed to the next step.
-else
-	echo SteamOS $(steamos-select-branch -c) branch detected. This script is only tested to work with STABLE or BETA branch of SteamOS.
-	exit
-fi
+##steamos-select-branch -c | grep -e rel -e beta &> /dev/null
+#if [ $? -eq 0 ]
+#then
+#	echo SteamOS $(steamos-select-branch -c) branch detected. Proceed to the next step.
+#else
+#	echo SteamOS $(steamos-select-branch -c) branch detected. This script is only tested to work with STABLE or BETA branch of SteamOS.
+#	exit
+#fi
 
 # sanity check - make sure there is enough free space in the home partition (at least 5GB)
 echo Checking if home partition has enough free space
