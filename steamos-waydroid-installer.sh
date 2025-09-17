@@ -18,9 +18,9 @@ FREE_VAR=$(df /var --output=avail | tail -n1)
 PLUGIN_LOADER=/home/deck/homebrew/services/PluginLoader
 
 # android TV builds
-ANDROID13_TV_IMG=https://sourceforge.net/projects/waydroid-atv/files/images/lineage-20.0-20250724-UNOFFICIAL-WayDroidATV_x86_64.zip
+ANDROID13_TV_IMG=https://sourceforge.net/projects/waydroid-atv/files/images/lineage-20.0-20250913-UNOFFICIAL-WayDroidATV_x86_64.zip
 # android TV hash
-ANDROID13_TV_IMG_HASH=9bed7791df8c1f87ed4108ac1a9b274f0b324e320127c62fd10e632efa1c8ac7
+ANDROID13_TV_IMG_HASH=309e0692fed0ea5d6b130858553138521d2e8902754db93a2b5a3ca68ecb28e9
 
 echo script version: $script_version_sha
 
