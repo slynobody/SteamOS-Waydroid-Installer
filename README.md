@@ -13,7 +13,7 @@
 > chmod +x *.sh
 
 2. install waydroid
-> .steamos-waydroid-installer.sh
+> ./steamos-waydroid-installer.sh
 
 3. Use privacy-friendly appstore to install your apps (also consider installing fstore)
 > wget https://web.archive.org/web/20230928212250/https://f-droid.org/repo/com.aurora.store_47.apk
