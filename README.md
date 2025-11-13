@@ -1,5 +1,5 @@
-# Android for SteamOS 3.8
-## waydroid for main-channel
+# Android for SteamOS 3.9
+## waydroid for main-/dev-channel of steamos
 
 1. basics: copy/paste > konsole
 > sudo steamos-devmode enable --no-prompt
