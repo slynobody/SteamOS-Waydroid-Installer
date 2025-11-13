@@ -29,7 +29,7 @@ read it.
 ## i have problems downloading images / want a more current version of the android-images.
 atv13 latest is included. (supechicken)
 
-## how do i get SteamOS 3.8?
+## how do i get SteamOS 3.9?
 > Enter 'developer mode' (https://tuxexplorer.com/how-to-enable-developer-mode-on-steam-deck)
 > 
 > in developer-tab left enable 'extended update-channels'
