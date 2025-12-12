@@ -1,5 +1,5 @@
 # Android-TV for SteamOS 3.9
-## waydroid with android-TV for main-/dev-channel of steamos
+## rel. recent android-TV for main-/dev-channel of steamos (+ some more tracking-protection)
 
 1. basics: copy/paste > konsole
 > sudo steamos-devmode enable --no-prompt
