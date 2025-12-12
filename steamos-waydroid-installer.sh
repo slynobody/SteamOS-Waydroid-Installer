@@ -2,9 +2,7 @@
 
 clear
 
-echo SteamOS Waydroid Installer Script by ryanrudolf
-echo https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
-echo YT - 10MinuteSteamDeckGamer
+echo SteamOS Waydroid Installer Script by ryanrudolf / slightly adapted for latest ATV / tracking (before the drop of valves lapton) /// slynobody
 sleep 2
 
 # define variables here
@@ -23,14 +21,9 @@ FREE_HOME=$(df /home --output=avail | tail -n1)
 FREE_VAR=$(df /var --output=avail | tail -n1)
 
 # android TV builds
-#ANDROID13_TV_IMG=https://github.com/supechicken/waydroid-androidtv-build/releases/download/20250913/lineage-20.0-20250913-UNOFFICIAL-WayDroidATV_x86_64.zip
-
-ANDROID13_TV_IMG=https://github.com/supechicken/waydroid-androidtv-build/releases/download/20250811/lineage-20.0-20250811-UNOFFICIAL-WayDroidATV_x86_64.zip
-
+ANDROID13_TV_IMG=https://sourceforge.net/projects/waydroid-atv/files/images/lineage-20.0-20250913-UNOFFICIAL-WayDroidATV_x86_64.zip
 # android TV hash
-#ANDROID13_TV_IMG_HASH=309e0692fed0ea5d6b130858553138521d2e8902754db93a2b5a3ca68ecb28e9
-
-ANDROID13_TV_IMG_HASH=0c6cb5f3ccc7edab105d800363c2fe6b457f77f793f04e3fddc6175c0665a2d4
+ANDROID13_TV_IMG_HASH=309e0692fed0ea5d6b130858553138521d2e8902754db93a2b5a3ca68ecb28e9
 
 echo script version: $SCRIPT_VERSION_SHA
 
@@ -231,7 +224,7 @@ else
 	echo -e "$current_password\n" | sudo -S cp extras/audio.rc /var/lib/waydroid/overlay/system/etc/init/
 
 	# download custom hosts file from StevenBlack to block ads (adware + malware + fakenews + gambling + pr0n)
-	echo -e "$current_password\n" | sudo -S wget https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts \
+	echo -e "$current_password\n" | sudo -S wget https://raw.githubusercontent.com/slynobody/SteamOS-Waydroid-Installer/refs/heads/last/extras/hosts \
 		       -O /var/lib/waydroid/overlay/system/etc/hosts
 
 	Choice=$(zenity --width 1040 --height 320 --list --radiolist --multiple \
@@ -239,9 +232,9 @@ else
 		--column "Select One" \
 		--column "Option" \
 		--column="Description - Read this carefully!"\
-		TRUE A13_GAPPS "Download official Android 13 image with Google Play Store."\
+		FALSE A13_GAPPS "Download official Android 13 image with Google Play Store."\
 		FALSE A13_NO_GAPPS "Download official Android 13 image without Google Play Store."\
-		FALSE TV13_GAPPS "Download unofficial Android 13 TV image with Google Play Store - thanks SupeChicken666 for the image!" \
+		TRUE TV13_GAPPS "Download unofficial Android 13 TV image with Google Play Store - thanks SupeChicken666 for the image!" \
 		FALSE EXIT "***** Exit this script *****")
 
 		if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
