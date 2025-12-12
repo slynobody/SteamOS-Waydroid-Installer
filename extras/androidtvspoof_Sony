@@ -1,0 +1,29 @@
+##########################################################################
+### start of custom build prop - you can safely delete if this causes issue
+### this is from slynobody
+
+ro.product.board=SVPDTV15
+ro.product.brand=Sony
+ro.product.manufacturer = Sony
+ro.system.build.product = SVP4KDTV15_EU
+ro.product.name=SVP4KDTV15_EU
+ro.product.device=SVP-DTV15
+ro.product.model=BRAVIA 4K 2015
+ro.build.flavor=Sakura_EU-user
+ro.build.fingerprint=Sony/SVP4KDTV15_EU/SVP-DTV15:7.0/NRD91N.S35/5.435:user/release-keys
+ro.build.description=SVP4KDTV15_EU-user 7.0 NRD91N.S35 5.435 release-keys
+ro.bootimage.build.fingerprint=Sony/SVP4KDTV15_EU/SVP-DTV15:7.0/NRD91N.S35/5.435:user/release-keys
+ro.build.product=SVPDTV15
+ro.build.description=SVP4KDTV15_EU-user 7.0 NRD91N.S35 5.435 release-keys
+ro.build.fingerprint=Sony/SVP4KDTV15_EU/SVP-DTV15:7.0/NRD91N.S35/5.435:user/release-keys
+ro.build.id=NRD91N.S35
+ro.build.display.id=SVP4KDTV15_EU-user 7.0 NRD91N.S35 5.435 release-keys
+ro.build.tags=release-keys
+ro.build.description=SVP4KDTV15_EU-user 7.0 NRD91N.S35 5.435 release-keys
+ro.vendor.build.fingerprint = Sony/SVP4KDTV15_EU/SVP-DTV15:7.0/NRD91N.S35/5.435:user/release-keys
+ro.vendor.build.tags = release-keys
+ro.vendor.build.type = user
+ro.odm.build.tags = release-keys
+
+### end of custom build prop - you can safely delete if this causes issue
+##########################################################################
