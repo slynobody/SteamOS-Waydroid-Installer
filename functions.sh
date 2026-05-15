@@ -105,7 +105,7 @@ apply_android_custom_config () {
 	else [ "$Android_Choice" == "TV13_NO_GAPPS" ] || [ "$Android_Choce" == "TV13_GAPPS" ]
 		echo TV13.
 		echo "" | sudo tee -a /var/lib/waydroid/waydroid_base.prop > /dev/null
-		cat extras/androidtv_spoof.prop | sudo tee -a /var/lib/waydroid/waydroid_base.prop
+		cat extras/androidtv_spoof_sony.prop | sudo tee -a /var/lib/waydroid/waydroid_base.prop
 	fi
 }
 

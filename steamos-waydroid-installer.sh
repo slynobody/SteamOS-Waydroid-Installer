@@ -2,9 +2,7 @@
 
 clear
 
-echo SteamOS Waydroid Installer Script by ryanrudolf
-echo https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer
-echo YT - 10MinuteSteamDeckGamer
+echo SteamOS Waydroid Installer Script by ryanrudolf // adapted by slownobody (e/os)
 sleep 2
 
 # define variables here
@@ -27,10 +25,10 @@ ARM_Choice=libhoudini
 ANDROID13_TV_OTA=https://ota.supechicken666.dev
 
 # custom Android 13 builds
-ANDROID13_IMG=https://github.com/ryanrudolfoba/SteamOS-Waydroid-Installer/releases/download/Android13-PvZ2/lineage-20-20251210-UNOFFICIAL-10MinuteSteamDeckGamer-Waydroid.zip
+ANDROID13_IMG=https://github.com/WayDroid-ATV/waydroid-builds/releases/download/20260201-eos/e-3.4-t-20260201-UNOFFICIAL-waydroid_x86_64.zip
 
 # custom Android 13 hash
-ANDROID13_IMG_HASH=aafdd4ef69e8a11d64ba02e881c1697d6a3ee4fa4c1fb97e33abc6da5f4bb6d4
+ANDROID13_IMG_HASH=365fc1f7b4f4479b1e4d7c9ed002dc354e056e19a0ec8c0cbab47f7b81adcfa6
 
 echo script version: $SCRIPT_VERSION_SHA
 
@@ -208,6 +206,9 @@ cp extras/Android_Waydroid_Cage.sh \
 	extras/fake_touch \
 	~/Android_Waydroid
 
+mv /var/lib/waydroid/overlay/system/etc/hosts /var/lib/waydroid/overlay/system/etc/hosts.disable
+cp extras/hosts /var/lib/waydroid/overlay/system/etc/hosts
+
 # waydroid launcher, toolbox and updater
 chmod +x ~/Android_Waydroid/*.sh
 
@@ -272,11 +273,11 @@ else
 		--column "Select One" \
 		--column "Option" \
 		--column="Description - Read this carefully!"\
-		TRUE A13_GAPPS "Download official Android 13 image with Google Play Store."\
+		FALSE A13_GAPPS "Download official Android 13 image with Google Play Store."\
 		FALSE A13_NO_GAPPS "Download official Android 13 image without Google Play Store."\
-		FALSE A13_CUSTOM "Download unofficial Android 13 that has new implementation of fake wifi."\
-		FALSE TV13_GAPPS "Download unofficial Android 13 TV image with Google Play Store - thanks SupeChicken666 for the image!" \
-		FALSE TV13_NO_GAPPS "Download unofficial Android 13 TV image without Google Play Store - thanks SupeChicken666 for the image!" \
+		TRUE A13_CUSTOM "Download unofficial Android 13 with e/os"\
+		FALSE TV13_GAPPS "Download unofficial Android 13 TV image with Google Play Store - SupeChicken666-image!" \
+		FALSE TV13_NO_GAPPS "Download unofficial Android 13 TV image without Google Play Store - SupeChicken666-image!" \
 		FALSE EXIT "***** Exit this script *****")
 
 		if [ $? -eq 1 ] || [ "$Android_Choice" == "EXIT" ]
